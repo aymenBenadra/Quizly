@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Quizly</string>
+    <string name="userName_hint">Nom d\'utilisateur</string>
+    <string name="password_hint">Mot de passe</string>
+    <string name="email_hint">Email (optionnel)</string>
+    <string name="sign_in_text_btn">Se connecter</string>
+    <string name="sign_up_text_btn">S\'inscrire</string>
+</resources>
