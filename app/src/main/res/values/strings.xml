@@ -5,4 +5,9 @@
     <string name="email_hint">Email (optionnel)</string>
     <string name="sign_in_text_btn">Se connecter</string>
     <string name="sign_up_text_btn">S\'inscrire</string>
+
+    <string name="category_name_txt">Category name</string>
+    <string name="category_image_description">L\'image de categorie</string>
+    <string name="categories_title">Categories</string>
+    <string name="ranking_title">Ranking</string>
 </resources>

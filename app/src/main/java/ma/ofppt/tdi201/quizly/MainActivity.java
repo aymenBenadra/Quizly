@@ -5,6 +5,7 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -68,8 +69,12 @@ public class MainActivity extends AppCompatActivity {
                     if(!userName.isEmpty()){
                         User user = dataSnapshot.child(userName).getValue(User.class);
 
-                        if(user.getPassword().equals(password))
-                            Toast.makeText(MainActivity.this, "Bienvenue, "+userName+"!", Toast.LENGTH_SHORT).show();
+                        if(user.getPassword().equals(password)) {
+                            Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
+                            Intent homeActivity = new Intent(MainActivity.this, Home.class);
+                            startActivity(homeActivity);
+                            finish();
+                        }
                         else
                             Toast.makeText(MainActivity.this, "Informations incorrect.", Toast.LENGTH_SHORT).show();
                     }
