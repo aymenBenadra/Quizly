@@ -10,4 +10,9 @@
     <string name="category_image_description">L\'image de categorie</string>
     <string name="categories_title">Categories</string>
     <string name="ranking_title">Ranking</string>
+    <string name="play_now_button">Joue maintenant!</string>
+    <string name="temp_answer_a_txt">Answer A</string>
+    <string name="temp_answer_c_txt">Answer C</string>
+    <string name="temp_answer_d_txt">Answer D</string>
+    <string name="temp_answer_b_txt">Answer B</string>
 </resources>
