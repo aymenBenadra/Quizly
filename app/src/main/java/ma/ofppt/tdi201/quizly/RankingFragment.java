@@ -40,7 +40,7 @@ public class RankingFragment extends Fragment {
 
 
     FirebaseDatabase db;
-    DatabaseReference questScore,rankingtable;
+    DatabaseReference questionScore,rankingtable;
     int res=0;
 
     public static RankingFragment newInstance(){
@@ -52,7 +52,7 @@ public class RankingFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db= FirebaseDatabase.getInstance();
-        questScore= db.getReference("Question_Score");
+        questionScore= db.getReference("Question_Score");
         rankingtable=db.getReference("Ranking");
     }
 
@@ -101,8 +101,8 @@ public class RankingFragment extends Fragment {
         return myFragment;
     }
 
-    private void updateScore(final String userName, final RankingCallBack<Ranking> rankingRankingCallBack) {
-        questScore.orderByChild("user").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
+    private void updateScore(final String userName, final RankingCallBack<Ranking> callBack) {
+        questionScore.orderByChild("user").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 for(DataSnapshot data:dataSnapshot.getChildren()){
@@ -112,7 +112,7 @@ public class RankingFragment extends Fragment {
 
                     //call back for process value
                     Ranking ranking = new Ranking(userName,res);
-                    rankingRankingCallBack.callBack(ranking);
+                    callBack.callBack(ranking);
                 }
             }
 
