@@ -15,4 +15,7 @@
     <string name="temp_answer_c_txt">Answer C</string>
     <string name="temp_answer_d_txt">Answer D</string>
     <string name="temp_answer_b_txt">Answer B</string>
+    <string name="txt_total_score">Score: 0</string>
+    <string name="txt_total_questions">Réussi: 0 / 30</string>
+    <string name="try_again_button">Réessayer</string>
 </resources>

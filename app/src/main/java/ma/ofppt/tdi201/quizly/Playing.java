@@ -11,8 +11,6 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
 import ma.ofppt.tdi201.quizly.Commun.Commun;
@@ -25,11 +23,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     int progressValue = 0;
     CountDownTimer mCountDown;
 
-    int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswer;
-
-    //Firebase
-    FirebaseDatabase database;
-    DatabaseReference questions;
+    int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswers;
 
     ProgressBar progressBar;
     ImageView questionImage;
@@ -41,12 +35,10 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
-        database = FirebaseDatabase.getInstance();
-        questions = database.getReference("Questions");
-
         textScore = (TextView) findViewById(R.id.txt_score);
         textQuestionNum = (TextView) findViewById(R.id.txt_questions_total);
         questionText = (TextView) findViewById(R.id.question_text);
+        questionImage = (ImageView) findViewById(R.id.question_image);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
 
@@ -74,7 +66,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             if (clickButton.getText().equals(Commun.questionsList.get(index).getCorrectAnswer())) //he/she choose correct answer
             {
                 score += 10;
-                correctAnswer++;
+                correctAnswers++;
                 ShowQuestion(++index); //go to next question
             }
             else {
@@ -82,7 +74,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("score",score);
                 dataSend.putInt("total",totalQuestion);
-                dataSend.putInt("correct",correctAnswer);
+                dataSend.putInt("correct", correctAnswers);
                 gameOver.putExtras(dataSend);
                 startActivity(gameOver);
                 finish();
@@ -127,7 +119,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             Bundle dataSend = new Bundle();
             dataSend.putInt("score",score);
             dataSend.putInt("total",totalQuestion);
-            dataSend.putInt("correct",correctAnswer);
+            dataSend.putInt("correct", correctAnswers);
             gameOver.putExtras(dataSend);
             startActivity(gameOver);
             finish();
@@ -153,5 +145,6 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
                 ShowQuestion(++index);
             }
         };
+        ShowQuestion(index);
     }
 }

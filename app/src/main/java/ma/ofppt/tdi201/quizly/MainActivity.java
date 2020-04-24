@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import ma.ofppt.tdi201.quizly.Commun.Commun;
 import ma.ofppt.tdi201.quizly.Model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
                         if(user.getPassword().equals(password)) {
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
+                            Commun.currentUser = user;
                             startActivity(homeActivity);
                             finish();
                         }
