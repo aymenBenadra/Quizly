@@ -20,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import ma.ofppt.tdi201.quizly.Common.Common;
+import ma.ofppt.tdi201.quizly.Commun.Commun;
 import ma.ofppt.tdi201.quizly.Interface.RankingCallBack;
 import ma.ofppt.tdi201.quizly.Model.QuestionScore;
 import ma.ofppt.tdi201.quizly.Model.Ranking;
@@ -41,7 +42,7 @@ public class RankingFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         db= FirebaseDatabase.getInstance();
-        questScore= db.getReference("Question_score");
+        questScore= db.getReference("Question_Score");
         rankingtable=db.getReference("Ranking");
     }
 
@@ -49,17 +50,38 @@ public class RankingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
-        updatingscore(Common.CurrentUser.getUserName(), new RankingCallBack<Ranking>() {
+//        updateScore(Commun.currentUser.getUserName(), new RankingCallBack<Ranking>() {
+//            @Override
+//            public void callBack(Ranking ranking) {
+//                 rankingtable.child(ranking.getUserName()).setValue(ranking);
+//                 //AfficheRank();
+//            }
+//        });
+
+        return myFragment;
+    }
+
+    private void updateScore(final String userName, final RankingCallBack<Ranking> rankingRankingCallBack) {
+        questScore.orderByChild("user").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void callBack(Ranking ranking) {
-                //put updated values to rankng table
-                    rankingtable.child(ranking.getUserName()).setValue(ranking);
-                    //show the result to table after upload them
-                AfficheRank();
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot data:dataSnapshot.getChildren()){
+
+                    QuestionScore quests=data.getValue(QuestionScore.class);
+                    res+=Integer.parseInt(quests.getScore());
+
+                    //call back for process value
+                    Ranking ranking = new Ranking(userName,res);
+                    rankingRankingCallBack.callBack(ranking);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
-        return myFragment;
+
     }
 
     private void AfficheRank() {
@@ -81,27 +103,8 @@ public class RankingFragment extends Fragment {
             }
         });
     }
-  //HEY DUDE IM WORKING ON IT DONT WORRY
     private void updatingscore(final String userName, final RankingCallBack<Ranking> callback){
-        questScore.orderByChild("user").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                for(DataSnapshot data:dataSnapshot.getChildren()){
-                    //I WILL ADD THIS CLASS WHEN I CAN DONT WPRRY ABOUT IT
-                    QuestionScore quests=data.getValue(QuestionScore.class);
-                res+=Integer.parseInt(quests.getScore());
 
-                //call back for process value
-                    Ranking ranking = new Ranking(userName,res);
-                    callback.callBack(ranking);
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
     }
 
 }
