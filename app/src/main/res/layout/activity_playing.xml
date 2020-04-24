@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login_background"
+    tools:context=".Playing">
+
+    <ImageView
+        android:id="@+id/question_image"
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/question_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="invisible"
+        android:layout_marginTop="25dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="30dp"
+        android:paddingTop="20dp" >
+
+        <LinearLayout
+            android:id="@+id/progress_group"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp">
+
+            <LinearLayout
+                android:weightSum="2"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/txt_score"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorTextIcons"
+                    android:gravity="center_horizontal"
+                    android:text="0"
+                    android:textSize="36sp"/>
+
+                <TextView
+                    android:id="@+id/txt_questions_total"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorTextIcons"
+                    android:gravity="center_horizontal"
+                    android:text="1/30"
+                    android:textSize="36sp"/>
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progress_bar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:max="5" />
+
+            <Button
+                android:id="@+id/btn_answer_A"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_answer_a_txt"
+                android:textColor="@color/colorTextIcons"
+                android:textStyle="bold"
+                android:theme="@style/myButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@color/colorPrimary"
+                android:layout_margin="8dp"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_answer_B"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_answer_b_txt"
+                android:textColor="@color/colorTextIcons"
+                android:textStyle="bold"
+                android:theme="@style/myButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@color/colorPrimary"
+                android:layout_margin="8dp"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_answer_C"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_answer_c_txt"
+                android:textColor="@color/colorTextIcons"
+                android:textStyle="bold"
+                android:theme="@style/myButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@color/colorPrimary"
+                android:layout_margin="8dp"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+            <Button
+                android:id="@+id/btn_answer_D"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/temp_answer_d_txt"
+                android:textColor="@color/colorTextIcons"
+                android:textStyle="bold"
+                android:theme="@style/myButton"
+                style="@style/Widget.AppCompat.Button.Borderless"
+                android:background="@color/colorPrimary"
+                android:layout_margin="8dp"
+                android:foreground="?android:attr/selectableItemBackground" />
+
+
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

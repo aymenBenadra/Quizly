@@ -1,6 +1,7 @@
 package ma.ofppt.tdi201.quizly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import ma.ofppt.tdi201.quizly.Commun.Commun;
 import ma.ofppt.tdi201.quizly.Interface.ItemClickListener;
 import ma.ofppt.tdi201.quizly.Model.Category;
 import ma.ofppt.tdi201.quizly.ViewHolder.CategoryViewHolder;
@@ -74,7 +76,10 @@ public class CategoryFragment extends Fragment {
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Toast.makeText(getActivity(), position+" | "+category.getName(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getActivity(), category.getName(), Toast.LENGTH_SHORT).show();
+                        Intent startGame = new Intent(getActivity(), Start.class);
+                        Commun.categoryId = adapter.getRef(position).getKey();
+                        startActivity(startGame);
                     }
                 });
             }
