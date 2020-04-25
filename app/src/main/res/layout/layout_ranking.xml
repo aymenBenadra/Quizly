@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="100dp"
-
-    android:padding="16dp"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="65dp"
     android:layout_margin="16dp"
-    >
+    android:padding="16dp"
+    app:cardCornerRadius="20dp">
 
     <LinearLayout
-        android:orientation="horizontal"
-        android:weightSum="10"
-        android:layout_gravity="center"
-        android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:weightSum="10">
 
         <TextView
             android:id="@+id/txt_name"
@@ -23,7 +22,7 @@
             android:layout_marginLeft="10dp"
             android:layout_weight="8"
             android:text="Name"
-            android:textColor="@color/colorAccent"
+            android:textColor="@android:color/black"
             android:textSize="24sp" />
 
         <TextView
@@ -32,7 +31,7 @@
             android:layout_height="43dp"
             android:layout_weight="2"
             android:text="Score"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/design_default_color_error"
             android:textSize="24sp" />
 
     </LinearLayout>
