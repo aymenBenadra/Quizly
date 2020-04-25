@@ -21,8 +21,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import ma.ofppt.tdi201.quizly.Common.Common;
 import ma.ofppt.tdi201.quizly.Commun.Commun;
 import ma.ofppt.tdi201.quizly.Interface.ItemClickListener;
 import ma.ofppt.tdi201.quizly.Interface.RankingCallBack;
@@ -61,10 +59,10 @@ public class RankingFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
 
-                 rankingList=(RecyclerView)myFragment.findViewById(R.id.rankingList);
-                 layoutManager= new LinearLayoutManager(getActivity());
-                 rankingList.setHasFixedSize(true);
-                 //using layoutManager to sort list of firebase ordrbychild method and  reverse recycle data because its asc
+        rankingList=(RecyclerView)myFragment.findViewById(R.id.rankingList);
+        layoutManager= new LinearLayoutManager(getActivity());
+        rankingList.setHasFixedSize(true);
+        //using layoutManager to sort list of firebase ordrbychild method and  reverse recycle data because its asc
         layoutManager.setReverseLayout(true);
         layoutManager.setStackFromEnd(true);
         rankingList.setLayoutManager(layoutManager);
@@ -73,8 +71,8 @@ public class RankingFragment extends Fragment {
         updateScore(Commun.currentUser.getUserName(), new RankingCallBack<Ranking>() {
             @Override
             public void callBack(Ranking ranking) {
-                 rankingtable.child(ranking.getUserName()).setValue(ranking);
-                 //AfficheRank();
+                rankingtable.child(ranking.getUserName()).setValue(ranking);
+                //AfficheRank();
             }
         });
 //adapter
@@ -83,11 +81,11 @@ public class RankingFragment extends Fragment {
                 rankingtable.orderByChild("score")
         ) {
             @Override
-              protected void populateViewHolder(RankingViewHolder rankingViewHolder, Ranking ranking, int i) {
-                    rankingViewHolder.txt_name.setText(ranking.getUserName());
-                    rankingViewHolder.txtscore.setText(String.valueOf(ranking.getScore()));
+            protected void populateViewHolder(RankingViewHolder rankingViewHolder, Ranking ranking, int i) {
+                rankingViewHolder.txt_name.setText(ranking.getUserName());
+                rankingViewHolder.txtscore.setText(String.valueOf(ranking.getScore()));
 
-                    //fix crash
+                //fix crash
                 rankingViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
@@ -111,7 +109,7 @@ public class RankingFragment extends Fragment {
                     res+=Integer.parseInt(quests.getScore());
 
                     //call back for process value
-                    Ranking ranking = new Ranking(userName,res);
+                    Ranking ranking = new Ranking(userName,String.valueOf(res));
                     callBack.callBack(ranking);
                 }
             }
