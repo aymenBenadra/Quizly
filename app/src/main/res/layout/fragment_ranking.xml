@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeLayout"
-    android:background="@drawable/test"
+    android:background="@drawable/ranking_background2"
     tools:context=".RankingFragment"
 
     >
@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:text="Name"
+                android:text="   Name"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="24sp" />
 
