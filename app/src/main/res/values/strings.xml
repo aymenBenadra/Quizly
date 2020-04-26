@@ -18,4 +18,5 @@
     <string name="txt_total_score">Score: 0</string>
     <string name="txt_total_questions">Réussi: 0 / 30</string>
     <string name="try_again_button">Réessayer</string>
+    <string name="loading">Loading...</string>
 </resources>

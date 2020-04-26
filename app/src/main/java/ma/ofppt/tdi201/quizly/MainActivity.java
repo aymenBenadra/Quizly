@@ -30,10 +30,15 @@ public class MainActivity extends AppCompatActivity {
     FirebaseDatabase database;
     DatabaseReference users;
 
+    //class loadingDialog
+    final DialogLoading loadingdialog = new DialogLoading(MainActivity.this);
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
 
         //Firease
         database = FirebaseDatabase.getInstance();
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
         btnSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 signin(edtUserName.getText().toString(), edtPassword.getText().toString());
             }
         });
@@ -71,6 +77,8 @@ public class MainActivity extends AppCompatActivity {
                         User user = dataSnapshot.child(userName).getValue(User.class);
 
                         if(user.getPassword().equals(password)) {
+                            //call methode for loadingdialog
+                            loadingdialog.startdialog();
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
                             Commun.currentUser = user;
