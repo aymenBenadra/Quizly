@@ -79,6 +79,7 @@ public class CategoryFragment extends Fragment {
                         Toast.makeText(getActivity(), category.getName(), Toast.LENGTH_SHORT).show();
                         Intent startGame = new Intent(getActivity(), Start.class);
                         Commun.categoryId = adapter.getRef(position).getKey();
+                        Commun.categoryName=category.getName();
                         startActivity(startGame);
                     }
                 });

@@ -1,7 +1,9 @@
 package ma.ofppt.tdi201.quizly;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.ColorSpace;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -23,9 +25,13 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.Locale;
+
 import ma.ofppt.tdi201.quizly.Commun.Commun;
 import ma.ofppt.tdi201.quizly.Interface.ItemClickListener;
 import ma.ofppt.tdi201.quizly.Interface.RankingCallBack;
+import ma.ofppt.tdi201.quizly.Model.Category;
 import ma.ofppt.tdi201.quizly.Model.QuestionScore;
 import ma.ofppt.tdi201.quizly.Model.Ranking;
 import ma.ofppt.tdi201.quizly.ViewHolder.RankingViewHolder;
@@ -60,7 +66,7 @@ public class RankingFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
 
         rankingList=(RecyclerView)myFragment.findViewById(R.id.rankingList);
@@ -85,7 +91,7 @@ public class RankingFragment extends Fragment {
                 rankingtable.orderByChild("score")
         ) {
             @Override
-            protected void populateViewHolder(RankingViewHolder rankingViewHolder, Ranking ranking, int i) {
+            protected void populateViewHolder(RankingViewHolder rankingViewHolder, final Ranking ranking, int i) {
                 rankingViewHolder.txt_name.setText(ranking.getUserName());
                 rankingViewHolder.txtscore.setText(String.valueOf(ranking.getScore()));
 
@@ -93,7 +99,9 @@ public class RankingFragment extends Fragment {
                 rankingViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
                     public void onClick(View view, int position, boolean isLongClick) {
-
+                        Intent scrorDetail=new Intent(getActivity(),ScoreDetail.class);
+                        scrorDetail.putExtra("ViewUser",ranking.getUserName());
+                        startActivity(scrorDetail);
                     }
                 });
             }
