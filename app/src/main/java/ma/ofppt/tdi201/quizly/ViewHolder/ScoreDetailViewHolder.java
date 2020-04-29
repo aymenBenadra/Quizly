@@ -15,5 +15,6 @@ public class ScoreDetailViewHolder extends RecyclerView.ViewHolder {
 
         txt_name=(TextView)itemView.findViewById(R.id.txt_name);
         txt_score=(TextView)itemView.findViewById(R.id.txt_score);
+
     }
 }

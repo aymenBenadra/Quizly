@@ -15,7 +15,7 @@ import ma.ofppt.tdi201.quizly.ViewHolder.ScoreDetailViewHolder;
 
 public class ScoreDetail extends AppCompatActivity {
 
-    FirebaseDatabase db;
+    FirebaseDatabase database;
     DatabaseReference Question_score;
     RecyclerView scorelist;
     RecyclerView.LayoutManager layoutManager;
@@ -29,8 +29,8 @@ public class ScoreDetail extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_detail);
         //firebase
-        db=FirebaseDatabase.getInstance();
-        Question_score=db.getReference("Question_score");
+        database=FirebaseDatabase.getInstance();
+        Question_score=database.getReference("Question_score");
          //View
          scorelist=(RecyclerView)findViewById(R.id.scoreList);
          scorelist.setHasFixedSize(true);
