@@ -21,4 +21,10 @@
     <string name="loading">Loading...</string>
     <string name="todo">TODO</string>
     <string name="todoo">TODO</string>
+    <string name="name">Name :</string>
+    <string name="score">Score :</string>
+    <string name="namee">Name</string>
+    <string name="scoree">Score</string>
+    <string name="categoryname">CategoryName</string>
+
 </resources>

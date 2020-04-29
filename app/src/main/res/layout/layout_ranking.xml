@@ -16,12 +16,12 @@
         android:weightSum="10">
 
         <TextView
-            android:id="@+id/txt_name"
+            android:id="@+id/txtt_name"
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_marginLeft="10dp"
             android:layout_weight="8"
-            android:text="Name"
+            android:text="@string/namee"
             android:textColor="@android:color/black"
             android:textSize="24sp" />
 
@@ -30,7 +30,7 @@
             android:layout_width="0dp"
             android:layout_height="43dp"
             android:layout_weight="2"
-            android:text="Score"
+            android:text="@string/scoree"
             android:textColor="@color/design_default_color_error"
             android:textSize="24sp" />
 

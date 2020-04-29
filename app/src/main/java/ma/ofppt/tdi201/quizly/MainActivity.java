@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
                     if(!userName.isEmpty()){
                         User user = dataSnapshot.child(userName).getValue(User.class);
                         if(user.getPassword().equals(password)) {
+
                             loadingdialog.startdialogNotimeout();
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);

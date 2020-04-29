@@ -1,6 +1,9 @@
 package ma.ofppt.tdi201.quizly;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
@@ -18,8 +21,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.google.android.material.textview.MaterialTextView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -43,6 +48,7 @@ public class RankingFragment extends Fragment {
     RecyclerView rankingList;
     LinearLayoutManager layoutManager;
     FirebaseRecyclerAdapter<Ranking, RankingViewHolder> adapter;
+    private TextView txttname,txttscore;
 
 
     FirebaseDatabase db;
@@ -53,6 +59,13 @@ public class RankingFragment extends Fragment {
         RankingFragment rankingFragment = new RankingFragment();
         return rankingFragment;
     }
+    //set the context of this activity
+    private Context mContext;
+
+    public void onAttach(final Activity activity) {
+        super.onAttach(activity);
+        mContext = activity;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,12 +74,13 @@ public class RankingFragment extends Fragment {
         questionScore= db.getReference("Question_Score");
         rankingtable=db.getReference("Ranking");
 
-
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
 
         rankingList=(RecyclerView)myFragment.findViewById(R.id.rankingList);
@@ -91,24 +105,61 @@ public class RankingFragment extends Fragment {
                 rankingtable.orderByChild("score")
         ) {
             @Override
-            protected void populateViewHolder(RankingViewHolder rankingViewHolder, final Ranking ranking, int i) {
+            protected void populateViewHolder(final RankingViewHolder rankingViewHolder, final Ranking ranking, int i) {
                 rankingViewHolder.txt_name.setText(ranking.getUserName());
                 rankingViewHolder.txtscore.setText(String.valueOf(ranking.getScore()));
+
 
                 //fix crash
                 rankingViewHolder.setItemClickListener(new ItemClickListener() {
                     @Override
+
                     public void onClick(View view, int position, boolean isLongClick) {
-                        Intent scrorDetail=new Intent(getActivity(),ScoreDetail.class);
-                        scrorDetail.putExtra("ViewUser",ranking.getUserName());
-                        startActivity(scrorDetail);
+
+                        showdetail(ranking);
                     }
+
                 });
             }
         };
+
+
+
         adapter.notifyDataSetChanged();
         rankingList.setAdapter(adapter);
         return myFragment;
+    }
+    //methode for detail
+    private void showdetail(final Ranking ranking){
+        LayoutInflater inflater = this.getLayoutInflater();
+        View detail = inflater.inflate(R.layout.layout_user_score_detail,null);
+
+        txttname =(TextView) detail.findViewById(R.id.txtt_name);
+        txttscore =(TextView) detail.findViewById(R.id.txtt_Score);
+
+        txttname.setText(ranking.getUserName());
+        txttscore.setText(ranking.getScore());
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
+        alertDialog.setTitle("INFO");
+        alertDialog.setView(detail);
+
+        alertDialog.setPositiveButton("view score detail", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent scrorDetail=new Intent(getActivity(),ScoreDetail.class);
+                scrorDetail.putExtra("ViewUser",ranking.getUserName());
+                startActivity(scrorDetail);
+            }
+        });
+        alertDialog.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        alertDialog.create();
+        alertDialog.show();
+
     }
 
     private void updateScore(final String userName, final RankingCallBack<Ranking> callBack) {

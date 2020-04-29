@@ -1,7 +1,6 @@
 package ma.ofppt.tdi201.quizly.ViewHolder;
 
 import android.view.View;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,7 +15,7 @@ public class RankingViewHolder extends RecyclerView.ViewHolder implements View.O
     private ItemClickListener itemClickListener;
     public RankingViewHolder(@NonNull View itemView) {
         super(itemView);
-        txt_name=(TextView) itemView.findViewById(R.id.txt_name);
+        txt_name=(TextView) itemView.findViewById(R.id.txtt_name);
         txtscore=(TextView) itemView.findViewById(R.id.txt_score);
         itemView.setOnClickListener(this);
 
