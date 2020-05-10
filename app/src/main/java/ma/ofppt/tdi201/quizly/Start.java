@@ -17,7 +17,8 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Collection;
 import java.util.Collections;
 
-import ma.ofppt.tdi201.quizly.Commun.Commun;
+import ma.ofppt.tdi201.quizly.Common.Common;
+
 import ma.ofppt.tdi201.quizly.Model.Question;
 
 public class Start extends AppCompatActivity {
@@ -35,7 +36,7 @@ public class Start extends AppCompatActivity {
         database = FirebaseDatabase.getInstance();
         questions = database.getReference("Questions");
 
-        LoadQuestions(Commun.categoryId);
+        LoadQuestions(Common.categoryId);
 
         btnPlay = (Button) findViewById(R.id.btnPlay);
 
@@ -50,17 +51,17 @@ public class Start extends AppCompatActivity {
     }
 
     private void LoadQuestions(String categoryId) {
-
-        if(Commun.questionsList.size() > 0)
-            Commun.questionsList.clear();
+    //clear list if have old questions
+        if(Common.questionsList.size() > 0)
+            Common.questionsList.clear();
 
         questions.orderByChild("CategoryId").equalTo(categoryId)
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        for (DataSnapshot postDataSnapshot1 : dataSnapshot.getChildren()) {
-                            Question question = postDataSnapshot1.getValue(Question.class);
-                            Commun.questionsList.add(question);
+                        for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                            Question question = postSnapshot .getValue(Question.class);
+                            Common.questionsList.add(question);
                         }
                     }
 
@@ -70,6 +71,6 @@ public class Start extends AppCompatActivity {
                     }
                 });
         // getting random questions
-        Collections.shuffle(Commun.questionsList);
+        Collections.shuffle(Common.questionsList);
     }
 }

@@ -23,7 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
-import ma.ofppt.tdi201.quizly.Commun.Commun;
+import ma.ofppt.tdi201.quizly.Common.Common;
 import ma.ofppt.tdi201.quizly.Model.User;
 
 public class MainActivity extends AppCompatActivity {
@@ -82,10 +82,10 @@ public class MainActivity extends AppCompatActivity {
                         User user = dataSnapshot.child(userName).getValue(User.class);
                         if(user.getPassword().equals(password)) {
 
-                            loadingdialog.startdialogNotimeout();
+                            //loadingdialog.startdialogNotimeout();
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
-                            Commun.currentUser = user;
+                            Common.currentUser = user;
                             startActivity(homeActivity);
                             finish();
                         }

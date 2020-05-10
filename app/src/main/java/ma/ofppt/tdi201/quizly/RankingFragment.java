@@ -33,7 +33,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.Locale;
 
-import ma.ofppt.tdi201.quizly.Commun.Commun;
+import ma.ofppt.tdi201.quizly.Common.Common;
 import ma.ofppt.tdi201.quizly.Interface.ItemClickListener;
 import ma.ofppt.tdi201.quizly.Interface.RankingCallBack;
 import ma.ofppt.tdi201.quizly.Model.Category;
@@ -92,7 +92,7 @@ public class RankingFragment extends Fragment {
         rankingList.setLayoutManager(layoutManager);
 
 
-        updateScore(Commun.currentUser.getUserName(), new RankingCallBack<Ranking>() {
+        updateScore(Common.currentUser.getUserName(), new RankingCallBack<Ranking>() {
             @Override
             public void callBack(Ranking ranking) {
                 rankingtable.child(ranking.getUserName()).setValue(ranking);

@@ -1,11 +1,11 @@
 package ma.ofppt.tdi201.quizly.Model;
 
 public class QuestionScore {
-    public String Question_Score;
-    public String User;
-    public String Score;
-    public String CategoryId;
-    public String CategoryName;
+    private String Question_Score;
+    private String User;
+    private String Score;
+    private String CategoryId;
+    private String CategoryName;
 
     public QuestionScore() {
     }

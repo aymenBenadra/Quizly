@@ -1,7 +1,7 @@
 package ma.ofppt.tdi201.quizly.Model;
 
 public class User {
-    private String userName;
+    public String userName;
     private String password;
     private String email;
 

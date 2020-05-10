@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import ma.ofppt.tdi201.quizly.Commun.Commun;
+import ma.ofppt.tdi201.quizly.Common.Common;
+
 import ma.ofppt.tdi201.quizly.Model.QuestionScore;
 
 public class GameOver extends AppCompatActivity {
@@ -48,9 +49,9 @@ public class GameOver extends AppCompatActivity {
 
         Bundle extras = getIntent().getExtras();
         if(extras != null){
-            int score = extras.getInt("score");
-            int totalQuestions = extras.getInt("total");
-            int correctAnswers = extras.getInt("correct");
+            int score = extras.getInt("SCORE");
+            int totalQuestions = extras.getInt("TOTAL");
+            int correctAnswers = extras.getInt("CORRECT");
 
             txtResultScore.setText("Score: "+score);
             getTxtResultQuestion.setText("Réussi: "+correctAnswers+" / "+totalQuestions);
@@ -58,11 +59,15 @@ public class GameOver extends AppCompatActivity {
             doneProgressBar.setProgress(correctAnswers);
 
             //upload point to DB
-            questionScore.child(Commun.currentUser.getUserName()+"_"+Commun.categoryId)
-                    .setValue(new QuestionScore(Commun.currentUser.getUserName()+"_"+Commun.categoryId,
-                                                    Commun.currentUser.getUserName(),
-                                                    String.valueOf(score),Commun.categoryId,
-                                                    Commun.categoryName));
+
+
+
+            //
+            questionScore.child(Common.currentUser.getUserName()+"_"+Common.categoryId)
+                    .setValue(new QuestionScore(Common.currentUser.getUserName()+"_"+Common.categoryId,
+                            Common.currentUser.getUserName(),
+                                                    String.valueOf(score),Common.categoryId,
+                            Common.categoryName));
 
 
         }

@@ -11,33 +11,42 @@ import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
-import ma.ofppt.tdi201.quizly.Commun.Commun;
+import ma.ofppt.tdi201.quizly.Common.Common;
+
 
 public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000;  //1 second
-    final static long TIMEOUT = 10000;   //10 seconds
+    final static long TIMEOUT = 7000;   //7 seconds
 
     int progressValue = 0;
     CountDownTimer mCountDown;
 
     int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswers;
+//    //firebase
+//    FirebaseDatabase database;
+//    DatabaseReference questions;
 
     ProgressBar progressBar;
     ImageView questionImage;
     Button btnA, btnB, btnC, btnD;
-    TextView textScore, textQuestionNum, questionText;
+    TextView textScore, textQuestionNum, question_text;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
+            //firebase
+//        database= FirebaseDatabase.getInstance();
+//        questions=database.getReference("Questions");
 
         textScore = (TextView) findViewById(R.id.txt_score);
         textQuestionNum = (TextView) findViewById(R.id.txt_questions_total);
-        questionText = (TextView) findViewById(R.id.question_text);
+        question_text = (TextView) findViewById(R.id.question_text);
         questionImage = (ImageView) findViewById(R.id.question_image);
 
         progressBar = (ProgressBar) findViewById(R.id.progress_bar);
@@ -63,7 +72,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         if (index < totalQuestion) // there's still some questions in the list
         {
             Button clickButton = (Button)view;
-            if (clickButton.getText().equals(Commun.questionsList.get(index).getCorrectAnswer())) //he/she choose correct answer
+            if (clickButton.getText().equals(Common.questionsList.get(index).getCorrectAnswer())) //he/she choose correct answer
             {
                 score += 10;
                 correctAnswers++;
@@ -72,15 +81,15 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             else {
                 Intent gameOver = new Intent(this,GameOver.class);
                 Bundle dataSend = new Bundle();
-                dataSend.putInt("score",score);
-                dataSend.putInt("total",totalQuestion);
-                dataSend.putInt("correct", correctAnswers);
+                dataSend.putInt("SCORE",score);
+                dataSend.putInt("TOTAL",totalQuestion);
+                dataSend.putInt("CORRECT", correctAnswers);
                 gameOver.putExtras(dataSend);
                 startActivity(gameOver);
                 finish();
             }
 
-            textScore.setText(""+score);
+            textScore.setText(String.format("%d",score));
         }
 
     }
@@ -92,24 +101,24 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             progressBar.setProgress(0);
             progressValue = 0;
 
-            if(Commun.questionsList.get(index).getIsImageQuestion().equals("true")) {   //it's an image
+            if(Common.questionsList.get(index).getIsImageQuestion().equals("true")) {   //it's an image
                 Picasso.with(getBaseContext())
-                        .load(Commun.questionsList.get(index).getQuestion())
+                        .load(Common.questionsList.get(index).getQuestion())
                         .into(questionImage);
                 questionImage.setVisibility(View.VISIBLE);
-                questionText.setVisibility(View.INVISIBLE);
+                question_text.setVisibility(View.INVISIBLE);
             }
             else {
-                questionText.setText(Commun.questionsList.get(index).getQuestion());
+                question_text.setText(Common.questionsList.get(index).getQuestion());
 
                 questionImage.setVisibility(View.INVISIBLE);
-                questionText.setVisibility(View.VISIBLE);
+                question_text.setVisibility(View.VISIBLE);
             }
 
-            btnA.setText(Commun.questionsList.get(index).getAnswerA());
-            btnB.setText(Commun.questionsList.get(index).getAnswerB());
-            btnC.setText(Commun.questionsList.get(index).getAnswerC());
-            btnD.setText(Commun.questionsList.get(index).getAnswerD());
+            btnA.setText(Common.questionsList.get(index).getAnswerA());
+            btnB.setText(Common.questionsList.get(index).getAnswerB());
+            btnC.setText(Common.questionsList.get(index).getAnswerC());
+            btnD.setText(Common.questionsList.get(index).getAnswerD());
 
             mCountDown.start();
         }
@@ -117,9 +126,9 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         {
             Intent gameOver = new Intent(this,GameOver.class);
             Bundle dataSend = new Bundle();
-            dataSend.putInt("score",score);
-            dataSend.putInt("total",totalQuestion);
-            dataSend.putInt("correct", correctAnswers);
+            dataSend.putInt("SCORE",score);
+            dataSend.putInt("TOTAL",totalQuestion);
+            dataSend.putInt("CORRECT", correctAnswers);
             gameOver.putExtras(dataSend);
             startActivity(gameOver);
             finish();
@@ -130,11 +139,11 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     protected void onResume() {
         super.onResume();
 
-        totalQuestion = Commun.questionsList.size();
+        totalQuestion = Common.questionsList.size();
 
         mCountDown = new CountDownTimer(TIMEOUT, INTERVAL) {
             @Override
-            public void onTick(long millisUntilFinished) {
+            public void onTick(long minisec) {
                 progressBar.setProgress(progressValue);
                 progressValue++;
             }
