@@ -30,7 +30,7 @@ public class ScoreDetail extends AppCompatActivity {
         setContentView(R.layout.activity_score_detail);
         //firebase
         database=FirebaseDatabase.getInstance();
-        Question_score=database.getReference("Question_score");
+        Question_score=database.getReference("Question_Score");
          //View
          scorelist=(RecyclerView)findViewById(R.id.scoreList);
          scorelist.setHasFixedSize(true);
@@ -48,7 +48,7 @@ public class ScoreDetail extends AppCompatActivity {
     private void loadScorDetail(String viewuser) {
         adapter= new FirebaseRecyclerAdapter<QuestionScore, ScoreDetailViewHolder>(
                 QuestionScore.class,R.layout.score_detail_layout,ScoreDetailViewHolder.class,
-                Question_score.orderByChild("User").equalTo(Viewuser)) {
+                Question_score.orderByChild("user").equalTo(Viewuser)) {
             @Override
             protected void populateViewHolder(ScoreDetailViewHolder scoreDetailViewHolder, QuestionScore questionScore, int i) {
                 scoreDetailViewHolder.txt_name.setText(questionScore.getCategoryName());
