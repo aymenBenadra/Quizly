@@ -39,7 +39,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:text=" Name"
+                android:text="   Category"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
                 android:textSize="24sp" />
 

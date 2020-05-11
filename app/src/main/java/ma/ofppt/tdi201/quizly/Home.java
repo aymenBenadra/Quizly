@@ -7,12 +7,15 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Home extends AppCompatActivity {
 
     BottomNavigationView bottomNavigationView;
+    //press back agai  to exit
+    private long backPressedTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +44,16 @@ public class Home extends AppCompatActivity {
         });
         setDefaultFragment();
     }
+    public void onBackPressed() {
 
+        if(backPressedTime +2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this, "Press Back Again To Exit App", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
     private void setDefaultFragment() {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_layout,CategoryFragment.newInstance());

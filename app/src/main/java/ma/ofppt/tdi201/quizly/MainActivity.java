@@ -27,6 +27,9 @@ import ma.ofppt.tdi201.quizly.Common.Common;
 import ma.ofppt.tdi201.quizly.Model.User;
 
 public class MainActivity extends AppCompatActivity {
+    //press back agai  to exit
+    private long backPressedTime;
+
     MaterialEditText edtNewUserName, edtNewPassword, edtNewEmail; // for Sign up
     MaterialEditText edtUserName, edtPassword; // for Sign in
     Button btnSignUp, btnSignIn;
@@ -35,6 +38,19 @@ public class MainActivity extends AppCompatActivity {
     DatabaseReference users;
     //class loadingDialog
     final DialogLoading loadingdialog = new DialogLoading(MainActivity.this);
+
+    //press back agai  to exit method
+    @Override
+    public void onBackPressed() {
+
+        if(backPressedTime +2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this, "Press Back Again To Exit App", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+
     }
 
     private void signin(final String userName, final String password) {
