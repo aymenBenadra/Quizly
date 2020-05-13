@@ -2,6 +2,7 @@ package ma.ofppt.tdi201.quizly;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -11,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +51,8 @@ public class CategoryFragment extends Fragment {
 
         database = FirebaseDatabase.getInstance();
         categories = database.getReference("Categories");
+
+
     }
 
     @Nullable
@@ -71,7 +75,7 @@ public class CategoryFragment extends Fragment {
                 CategoryViewHolder.class,
                 categories) {
             @Override
-            protected void populateViewHolder(CategoryViewHolder categoryViewHolder, final Category category, int i) {
+            protected void populateViewHolder(final CategoryViewHolder categoryViewHolder, final Category category, int i) {
                 categoryViewHolder.categoryName.setText(category.getName());
                 Picasso.with(getActivity()).load(category.getImage()).into(categoryViewHolder.categoryImage);
                 categoryViewHolder.setItemClickListener(new ItemClickListener() {
@@ -80,6 +84,7 @@ public class CategoryFragment extends Fragment {
                         Toast.makeText(getActivity(), category.getName(), Toast.LENGTH_SHORT).show();
 
                         Intent startGame = new Intent(getActivity(), Start.class);
+                        startGame.putExtra("resId", category.getImage());
                         Common.categoryId = adapter.getRef(position).getKey();
                         Common.categoryName=category.getName();
                         startActivity(startGame);

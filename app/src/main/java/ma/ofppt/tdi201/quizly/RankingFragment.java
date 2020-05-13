@@ -128,6 +128,7 @@ public class RankingFragment extends Fragment {
         adapter.notifyDataSetChanged();
         rankingList.setAdapter(adapter);
         return myFragment;
+
     }
     //methode for detail
     private void showdetail(final Ranking ranking){

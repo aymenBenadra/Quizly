@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/login_background"
+    android:background="@drawable/question_back"
     tools:context=".Start">
 
     <ImageView
-        android:id="@+id/logo"
-        android:src="@drawable/start_logo"
+        android:id="@+id/category_image2"
+
         android:layout_width="match_parent"
         android:layout_height="300dp"
         android:scaleType="fitCenter"
@@ -22,22 +22,29 @@
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_margin="16dp"
+        android:background="@color/colorPrimary"
+        app:cardBackgroundColor="@color/colorSecondaryText"
         app:cardElevation="4dp">
 
         <Button
             android:id="@+id/btnPlay"
-            android:layout_margin="8dp"
             style="@style/Widget.AppCompat.Button.Borderless"
-            android:background="@color/colorPrimary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/colorSecondaryText"
             android:foreground="?android:attr/selectableItemBackground"
             android:text="@string/play_now_button"
-            android:textColor="@color/colorTextIcons"
+            android:textColor="@android:color/holo_orange_dark"
+            android:textSize="18sp"
             android:textStyle="bold"
-            android:theme="@style/myButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:theme="@style/myButton" />
 
     </androidx.cardview.widget.CardView>
-
 
 </RelativeLayout>
