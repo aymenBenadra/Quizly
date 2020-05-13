@@ -63,8 +63,8 @@ public class GameOver extends AppCompatActivity {
 
 
             //
-            questionScore.child(Common.currentUser.getUserName()+"_"+Common.categoryId)
-                    .setValue(new QuestionScore(Common.currentUser.getUserName()+"_"+Common.categoryId,
+            questionScore.child(Common.currentUser.getUserName()+"_"+Common.currentUser.getPrenom()+"_"+Common.categoryId)
+                    .setValue(new QuestionScore(Common.currentUser.getUserName()+"_"+Common.currentUser.getPrenom()+"_"+Common.categoryId,
                             Common.currentUser.getUserName(),
                                                     String.valueOf(score),Common.categoryId,
                             Common.categoryName));

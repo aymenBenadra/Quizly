@@ -20,7 +20,7 @@ import ma.ofppt.tdi201.quizly.Common.Common;
 
 public class Playing extends AppCompatActivity implements View.OnClickListener {
 
-    final static long INTERVAL = 2000;  //1 second
+    final static long INTERVAL = 1000;  //1 second
     final static long TIMEOUT = 9000;   //7 seconds
 
     int progressValue = 0;

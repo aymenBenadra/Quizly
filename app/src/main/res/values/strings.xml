@@ -26,5 +26,6 @@
     <string name="namee">Name</string>
     <string name="scoree">Score</string>
     <string name="categoryname">CategoryName</string>
+    <string name="Prenom_hint">Prenom</string>
 
 </resources>

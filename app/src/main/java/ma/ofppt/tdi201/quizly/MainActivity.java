@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     //press back agai  to exit
     private long backPressedTime;
 
-    MaterialEditText edtNewUserName, edtNewPassword, edtNewEmail; // for Sign up
+    MaterialEditText edtNewUserName, edtNewPassword, edtNewEmail,edNewPrenom; // for Sign up
     MaterialEditText edtUserName, edtPassword; // for Sign in
     Button btnSignUp, btnSignIn;
 
@@ -142,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
         edtNewUserName = (MaterialEditText) signUp.findViewById(R.id.edtNewUserName);
         edtNewPassword = (MaterialEditText) signUp.findViewById(R.id.edtNewPassword);
         edtNewEmail    = (MaterialEditText) signUp.findViewById(R.id.edtNewEmail);
+        edNewPrenom =(MaterialEditText) signUp.findViewById(R.id.edtNewPrenom);
 
         alertDialog.setView(signUp);
         alertDialog.setIcon(R.drawable.ic_account_circle_black_24dp);
@@ -156,11 +157,11 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Inscrire", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                if(!edtNewUserName.getText().toString().isEmpty()){
+                if(!edtNewUserName.getText().toString().isEmpty() && !edNewPrenom.getText().toString().isEmpty()){
                     if(!edtNewPassword.getText().toString().isEmpty()){
                         final User user = new User(edtNewUserName.getText().toString(),
                                 edtNewPassword.getText().toString(),
-                                edtNewEmail.getText().toString());
+                                edtNewEmail.getText().toString(),edNewPrenom.getText().toString());
                         users.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
                 else {
-                    Toast.makeText(MainActivity.this, "Remplir votre nom d'utilisateur svp.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "Remplir votre nom et prenom d'utilisateur svp.", Toast.LENGTH_SHORT).show();
                 }
             }
         });
