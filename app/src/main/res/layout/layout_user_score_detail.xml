@@ -44,12 +44,12 @@
 
                 <TextView
                     android:id="@+id/txtt_name"
-                    android:layout_width="237dp"
-                    android:layout_height="35dp"
+                    android:layout_width="248dp"
+                    android:layout_height="44dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="30dp"
+                    android:autoSizeTextType="uniform"
                     android:textColor="#B61C1C"
-                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.883"
