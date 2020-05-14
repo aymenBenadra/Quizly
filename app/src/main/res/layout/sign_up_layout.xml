@@ -6,6 +6,7 @@
     android:layout_margin="8dp"
     app:cardElevation="4dp"
     >
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -36,6 +37,18 @@
             app:met_primaryColor="@color/colorPrimary"
             app:met_singleLineEllipsis="true"/>
 
+        <Spinner
+            android:id="@+id/edNewFiliere"
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:entries="@array/filiere"
+            android:hint="@string/Prenom_hint"
+            android:textColor="@color/colorPrimary"
+            android:textColorHint="@color/colorPrimary"
+            android:textSize="24sp" />
+
+
+
         <com.rengwuxian.materialedittext.MaterialEditText
             android:id="@+id/edtNewPassword"
             android:hint="@string/password_hint"
@@ -63,6 +76,20 @@
             app:met_floatingLabel="highlight"
             app:met_primaryColor="@color/colorPrimary"
             app:met_singleLineEllipsis="true"/>
+
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="61dp"
+            android:layout_marginTop="440dp"
+            android:text="@string/sign_up_text_btn" />
+
+
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

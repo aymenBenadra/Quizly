@@ -3,20 +3,20 @@ package ma.ofppt.tdi201.quizly.Model;
 public class Ranking {
     private String userName;
     private String Prenom;
+    private String Filiere;
     private String score;
+
 
     public Ranking(){
 
     }
 
-    public Ranking(String userName, String prenom, String score) {
+    public Ranking(String userName, String prenom, String filiere, String score) {
         this.userName = userName;
-        this.Prenom = prenom;
+        Prenom = prenom;
+        Filiere = filiere;
         this.score = score;
     }
-
-
-
 
     public String getUserName() {
         return userName;
@@ -31,7 +31,15 @@ public class Ranking {
     }
 
     public void setPrenom(String prenom) {
-        this.Prenom = prenom;
+        Prenom = prenom;
+    }
+
+    public String getFiliere() {
+        return Filiere;
+    }
+
+    public void setFiliere(String filiere) {
+        Filiere = filiere;
     }
 
     public String getScore() {

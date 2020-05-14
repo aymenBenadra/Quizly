@@ -5,7 +5,6 @@
     <string name="email_hint">Email (optionnel)</string>
     <string name="sign_in_text_btn">Se connecter</string>
     <string name="sign_up_text_btn">S\'inscrire</string>
-
     <string name="category_name_txt">Category name</string>
     <string name="category_image_description">L\'image de categorie</string>
     <string name="categories_title">Categories</string>
@@ -27,5 +26,17 @@
     <string name="scoree">Score</string>
     <string name="categoryname">CategoryName</string>
     <string name="Prenom_hint">Prenom</string>
+    <string name="specialite">Specialite :</string>
+    <string name="filiere">Filière</string>
+    <string-array name="filiere">
+        <item>Filiere</item>
+        <item>TDI</item>
+        <item>TRI</item>
+        <item>TDM</item>
+        <item>TSGE</item>
+        <item>TMSIR</item>
+
+    </string-array>
+
 
 </resources>

@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -35,6 +36,22 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     ImageView questionImage;
     Button btnA, btnB, btnC, btnD;
     TextView textScore, textQuestionNum, question_text;
+
+    //press back agai  to exit
+    private long backPressedTime;
+
+    public void onBackPressed() {
+
+        if(backPressedTime +2000 > System.currentTimeMillis()){
+            super.onBackPressed();
+            return;
+        }else{
+            Toast.makeText(this, "Press Back Again To stop the Quiz", Toast.LENGTH_SHORT).show();
+
+        }
+        backPressedTime = System.currentTimeMillis();
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

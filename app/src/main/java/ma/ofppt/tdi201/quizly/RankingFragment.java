@@ -48,7 +48,7 @@ public class RankingFragment extends Fragment {
     RecyclerView rankingList;
     LinearLayoutManager layoutManager;
     FirebaseRecyclerAdapter<Ranking, RankingViewHolder> adapter;
-    private TextView txttname,txttscore;
+    private TextView txttname,txttscore,txttFiliere;
 
 
     FirebaseDatabase db;
@@ -92,7 +92,7 @@ public class RankingFragment extends Fragment {
         rankingList.setLayoutManager(layoutManager);
 
 
-        updateScore(Common.currentUser.getUserName(),Common.currentUser.getPrenom(), new RankingCallBack<Ranking>() {
+        updateScore(Common.currentUser.getUserName(),Common.currentUser.getPrenom(),Common.currentUser.getFiliere(), new RankingCallBack<Ranking>() {
             @Override
             public void callBack(Ranking ranking) {
                 rankingtable.child(ranking.getUserName()).setValue(ranking);
@@ -137,11 +137,12 @@ public class RankingFragment extends Fragment {
 
         txttname =(TextView) detail.findViewById(R.id.txtt_name);
         txttscore =(TextView) detail.findViewById(R.id.txtt_Score);
+        txttFiliere=(TextView) detail.findViewById(R.id.txtt_Filiere);
 
 
         txttname.setText(ranking.getUserName()+" "+ranking.getPrenom());
         txttscore.setText(ranking.getScore());
-
+        txttFiliere.setText(ranking.getFiliere());
 
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(mContext);
         alertDialog.setTitle("INFO");
@@ -166,7 +167,7 @@ public class RankingFragment extends Fragment {
 
     }
 
-    private void updateScore(final String userName,final String Prenom, final RankingCallBack<Ranking> callBack) {
+    private void updateScore(final String userName,final String Prenom,final String Filiere, final RankingCallBack<Ranking> callBack) {
         questionScore.orderByChild("user").equalTo(userName).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -176,7 +177,7 @@ public class RankingFragment extends Fragment {
                     res+=Integer.parseInt(quests.getScore());
 
                     //call back for process value
-                    Ranking ranking = new Ranking(userName,Prenom,String.valueOf(res));
+                    Ranking ranking = new Ranking(userName,Prenom,Filiere,String.valueOf(res));
                     callBack.callBack(ranking);
                 }
             }

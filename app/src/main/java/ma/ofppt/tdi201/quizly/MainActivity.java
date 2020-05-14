@@ -12,8 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
@@ -23,19 +25,29 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.rengwuxian.materialedittext.MaterialEditText;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import ma.ofppt.tdi201.quizly.Common.Common;
 import ma.ofppt.tdi201.quizly.Model.User;
 
 public class MainActivity extends AppCompatActivity {
-    //press back agai  to exit
+
+    //press back again  to exit
     private long backPressedTime;
 
     MaterialEditText edtNewUserName, edtNewPassword, edtNewEmail,edNewPrenom; // for Sign up
     MaterialEditText edtUserName, edtPassword; // for Sign in
     Button btnSignUp, btnSignIn;
-
+    Spinner filieresp;
     FirebaseDatabase database;
     DatabaseReference users;
+    //tableaux de spinner
+
+
+
+
     //class loadingDialog
     final DialogLoading loadingdialog = new DialogLoading(MainActivity.this);
 
@@ -52,10 +64,13 @@ public class MainActivity extends AppCompatActivity {
         backPressedTime = System.currentTimeMillis();
     }
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
 
         //Firease
         database = FirebaseDatabase.getInstance();
@@ -64,14 +79,22 @@ public class MainActivity extends AppCompatActivity {
         edtUserName = (MaterialEditText) findViewById(R.id.edtUserName);
         edtPassword = (MaterialEditText) findViewById(R.id.edtPassword);
 
+
+
+
+
         btnSignUp = (Button) findViewById(R.id.btn_sign_up);
         btnSignIn = (Button) findViewById(R.id.btn_sign_in);
 
         btnSignUp.setOnClickListener(
+
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        showSignUpDialog();
+                       // showSignUpDialog();
+                        Intent intent=new Intent(MainActivity.this,sinscrire.class);
+                        startActivity(intent);
+                        finish();
                     }
                 }
         );
@@ -89,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void signin(final String userName, final String password) {
         users.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -132,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void showSignUpDialog() {
+
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(MainActivity.this);
         alertDialog.setTitle("Se connecter");
         alertDialog.setMessage("Remplir tous les informations SVP");
@@ -143,6 +168,10 @@ public class MainActivity extends AppCompatActivity {
         edtNewPassword = (MaterialEditText) signUp.findViewById(R.id.edtNewPassword);
         edtNewEmail    = (MaterialEditText) signUp.findViewById(R.id.edtNewEmail);
         edNewPrenom =(MaterialEditText) signUp.findViewById(R.id.edtNewPrenom);
+        filieresp=(Spinner) findViewById(R.id.edNewFiliere);
+
+
+
 
         alertDialog.setView(signUp);
         alertDialog.setIcon(R.drawable.ic_account_circle_black_24dp);
@@ -157,11 +186,14 @@ public class MainActivity extends AppCompatActivity {
         alertDialog.setPositiveButton("Inscrire", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
+
                 if(!edtNewUserName.getText().toString().isEmpty() && !edNewPrenom.getText().toString().isEmpty()){
                     if(!edtNewPassword.getText().toString().isEmpty()){
                         final User user = new User(edtNewUserName.getText().toString(),
                                 edtNewPassword.getText().toString(),
-                                edtNewEmail.getText().toString(),edNewPrenom.getText().toString());
+                                edtNewEmail.getText().toString(),edNewPrenom.getText().toString(), (String) filieresp.getSelectedItem());
                         users.addListenerForSingleValueEvent(new ValueEventListener() {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
@@ -192,5 +224,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         alertDialog.show();
+
+
     }
 }

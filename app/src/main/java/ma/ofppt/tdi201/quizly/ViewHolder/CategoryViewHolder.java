@@ -13,7 +13,7 @@ import ma.ofppt.tdi201.quizly.R;
 public class CategoryViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     public TextView categoryName;
-    public ImageView categoryImage,categoryImage2;
+    public ImageView categoryImage;
 
     private ItemClickListener itemClickListener;
 

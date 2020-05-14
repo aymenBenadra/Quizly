@@ -18,16 +18,31 @@
 
         />
 
+    <ImageView
+        android:id="@+id/question_place"
+        android:layout_width="match_parent"
+        android:layout_height="299dp"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="0dp"
+        android:background="@drawable/quiestion_place"
+        android:gravity="center"
+
+        />
+
     <TextView
         android:id="@+id/question_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="289dp"
+        android:layout_height="227dp"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="51dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="40dp"
+        android:layout_marginEnd="66dp"
+        android:layout_marginRight="66dp"
+        android:autoSizeTextType="uniform"
         android:gravity="center"
         android:textColor="@color/cardview_light_background"
         android:textSize="36sp"
-
         android:visibility="invisible" />
 
     <RelativeLayout
