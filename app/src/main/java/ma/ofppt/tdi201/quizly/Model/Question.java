@@ -1,5 +1,7 @@
 package ma.ofppt.tdi201.quizly.Model;
 
+import ma.ofppt.tdi201.quizly.Playing;
+
 public class Question {
     private String Question, AnswerA, AnswerB, AnswerC, AnswerD, CorrectAnswer, CategoryId, IsImageQuestion;
 
@@ -16,6 +18,8 @@ public class Question {
         CategoryId = categoryId;
         IsImageQuestion = isImageQuestion;
     }
+
+
 
     public String getQuestion() {
         return Question;

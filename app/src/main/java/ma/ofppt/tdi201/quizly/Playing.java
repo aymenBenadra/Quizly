@@ -16,6 +16,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Random;
+
 import ma.ofppt.tdi201.quizly.Common.Common;
 
 
@@ -23,6 +25,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000;  //1 second
     final static long TIMEOUT = 9000;   //7 seconds
+    private Random randomGenerator;
 
     int progressValue = 0;
     CountDownTimer mCountDown;
@@ -78,7 +81,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         btnC.setOnClickListener(this);
         btnD.setOnClickListener(this);
 
-
+randomGenerator = new Random();
     }
 
     @Override
@@ -112,6 +115,8 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     }
 
     private void ShowQuestion(int index) {
+
+        // index = randomGenerator.nextInt(Common.questionsList.size());
         if (index < totalQuestion){
             thisQuestion++;
             textQuestionNum.setText(thisQuestion + " / " + totalQuestion);
