@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".sinscrire"></activity>
+        <activity android:name=".Congrates"></activity>
+        <activity android:name=".GameOverTempActivity" />
+        <activity android:name=".sinscrire" />
         <activity android:name=".ScoreDetail" />
         <activity android:name=".MainActivity" />
         <activity android:name=".GameOver" />

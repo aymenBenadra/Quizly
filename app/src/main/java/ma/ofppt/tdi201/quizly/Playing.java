@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -24,9 +25,10 @@ import ma.ofppt.tdi201.quizly.Common.Common;
 
 public class Playing extends AppCompatActivity implements View.OnClickListener {
 
-    final static long INTERVAL = 1000;  //1 second
-    final static long TIMEOUT = 10000;   //9 seconds
+    final static long INTERVAL = 1500;  //1 second
+    final static long TIMEOUT = 15000;   //9 seconds
 
+    private static int SPLASH_TIME_OUT = 3000; //1000=1s
 
     int progressValue = 0;
     CountDownTimer mCountDown;
@@ -110,7 +112,8 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
                 ShowQuestion(++index); //go to next question
             }
             else{
-                Intent gameOver = new Intent(this,GameOver.class);
+
+                Intent gameOver = new Intent(this,GameOverTempActivity.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("SCORE",score);
                 dataSend.putInt("TOTAL",totalQuestion);
@@ -156,7 +159,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         }
         else//if it's the final question
         {
-            Intent gameOver = new Intent(this,GameOver.class);
+            Intent gameOver = new Intent(this,Congrates.class);
             Bundle dataSend = new Bundle();
             dataSend.putInt("SCORE",score);
             dataSend.putInt("TOTAL",totalQuestion);

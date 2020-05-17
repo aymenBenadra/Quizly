@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     //class loadingDialog
     final DialogLoading loadingdialog = new DialogLoading(MainActivity.this);
 
-    //press back agai  to exit method
+    //press back again  to exit method
     @Override
     public void onBackPressed() {
 
