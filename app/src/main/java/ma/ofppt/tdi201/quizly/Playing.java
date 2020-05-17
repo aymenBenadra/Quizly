@@ -16,6 +16,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.squareup.picasso.Picasso;
 
+import java.util.Collections;
 import java.util.Random;
 
 import ma.ofppt.tdi201.quizly.Common.Common;
@@ -25,12 +26,14 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000;  //1 second
     final static long TIMEOUT = 9000;   //7 seconds
-    private Random randomGenerator;
+
 
     int progressValue = 0;
     CountDownTimer mCountDown;
+    private Random randomGenerator;
+    int index=0, score = 0, thisQuestion = 0, totalQuestion, correctAnswers;
 
-    int index = 0, score = 0, thisQuestion = 0, totalQuestion, correctAnswers;
+
 //    //firebase
 //    FirebaseDatabase database;
 //    DatabaseReference questions;
@@ -60,9 +63,18 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
+
+
+       // randomGenerator = new Random();
+        //index = randomGenerator.nextInt(Common.questionsList.size());
+
+
             //firebase
 //        database= FirebaseDatabase.getInstance();
 //        questions=database.getReference("Questions");
+
+        //random the questions
+        Collections.shuffle(Common.questionsList);
 
         textScore = (TextView) findViewById(R.id.txt_score);
         textQuestionNum = (TextView) findViewById(R.id.txt_questions_total);
@@ -81,7 +93,6 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         btnC.setOnClickListener(this);
         btnD.setOnClickListener(this);
 
-randomGenerator = new Random();
     }
 
     @Override
@@ -98,7 +109,7 @@ randomGenerator = new Random();
                 correctAnswers++;
                 ShowQuestion(++index); //go to next question
             }
-            else {
+            else{
                 Intent gameOver = new Intent(this,GameOver.class);
                 Bundle dataSend = new Bundle();
                 dataSend.putInt("SCORE",score);
@@ -116,7 +127,6 @@ randomGenerator = new Random();
 
     private void ShowQuestion(int index) {
 
-        // index = randomGenerator.nextInt(Common.questionsList.size());
         if (index < totalQuestion){
             thisQuestion++;
             textQuestionNum.setText(thisQuestion + " / " + totalQuestion);
@@ -144,7 +154,7 @@ randomGenerator = new Random();
 
             mCountDown.start();
         }
-        else //if it's the final question
+        else//if it's the final question
         {
             Intent gameOver = new Intent(this,GameOver.class);
             Bundle dataSend = new Bundle();
@@ -154,7 +164,8 @@ randomGenerator = new Random();
             gameOver.putExtras(dataSend);
             startActivity(gameOver);
             finish();
-        }
+
+    }
     }
 
     @Override
