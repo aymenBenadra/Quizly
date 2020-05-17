@@ -27,7 +27,7 @@
     <string name="categoryname">CategoryName</string>
     <string name="Prenom_hint">Prenom</string>
     <string name="specialite">Specialite :</string>
-    <string name="filiere">Filière</string>
+    <string name="filiere">Filière :</string>
     <string-array name="filiere">
         <item>Filiere</item>
         <item>TDI</item>
