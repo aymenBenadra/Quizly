@@ -25,7 +25,7 @@ import ma.ofppt.tdi201.quizly.Common.Common;
 public class Playing extends AppCompatActivity implements View.OnClickListener {
 
     final static long INTERVAL = 1000;  //1 second
-    final static long TIMEOUT = 9000;   //7 seconds
+    final static long TIMEOUT = 10000;   //9 seconds
 
 
     int progressValue = 0;
@@ -133,7 +133,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             progressBar.setProgress(0);
             progressValue = 0;
 
-            if(Common.questionsList.get(index).getIsImageQuestion().equals("true")) {   //it's an image
+            if(Common.questionsList.get(index).getIsImageQuestion().equals("true")) {   //if question is an image
                 Picasso.with(getBaseContext())
                         .load(Common.questionsList.get(index).getQuestion())
                         .into(questionImage);
