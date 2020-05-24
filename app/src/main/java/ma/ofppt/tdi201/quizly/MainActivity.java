@@ -4,8 +4,15 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.Network;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.LayoutInflater;
@@ -39,11 +46,14 @@ public class MainActivity extends AppCompatActivity {
 
     MaterialEditText edtNewUserName, edtNewPassword, edtNewEmail,edNewPrenom; // for Sign up
     MaterialEditText edtUserName, edtPassword; // for Sign in
-    Button btnSignUp, btnSignIn;
+    Button btnSignUp, btnSignIn,btntryagain;
     Spinner filieresp;
     FirebaseDatabase database;
     DatabaseReference users;
-    //tableaux de spinner
+    //initial wifiManager
+    private WifiManager wifiManager;
+    private  AlertDialog alertDialog;
+    NetReciever netReciever;
 
 
 
@@ -70,6 +80,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //register broadcast of internet detector
+        netReciever= new NetReciever();
+
+        IntentFilter intentFilter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netReciever,intentFilter);
+
+        btntryagain=(Button) findViewById(R.id.cnxTryAgain);
 
 
         //Firease
@@ -109,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
 
 
     }

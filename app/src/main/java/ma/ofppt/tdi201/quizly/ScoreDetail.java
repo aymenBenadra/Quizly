@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -20,6 +22,7 @@ public class ScoreDetail extends AppCompatActivity {
     RecyclerView scorelist;
     RecyclerView.LayoutManager layoutManager;
     FirebaseRecyclerAdapter<QuestionScore, ScoreDetailViewHolder> adapter;
+    NetReciever netReciever;
 
 
 
@@ -28,6 +31,13 @@ public class ScoreDetail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_score_detail);
+
+        //register broadcast of internet detector
+        netReciever= new NetReciever();
+
+        IntentFilter intentFilter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netReciever,intentFilter);
+
         //firebase
         database=FirebaseDatabase.getInstance();
         Question_score=database.getReference("Question_Score");

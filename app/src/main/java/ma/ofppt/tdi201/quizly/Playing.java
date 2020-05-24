@@ -3,6 +3,8 @@ package ma.ofppt.tdi201.quizly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -44,6 +46,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
     ImageView questionImage;
     Button btnA, btnB, btnC, btnD;
     TextView textScore, textQuestionNum, question_text;
+    NetReciever netReciever;
 
     //press back agai  to exit
     private long backPressedTime;
@@ -66,6 +69,11 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playing);
 
+        //register broadcast of internet detector
+        netReciever= new NetReciever();
+
+        IntentFilter intentFilter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netReciever,intentFilter);
 
        // randomGenerator = new Random();
         //index = randomGenerator.nextInt(Common.questionsList.size());

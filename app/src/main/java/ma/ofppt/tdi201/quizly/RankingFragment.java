@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.graphics.ColorSpace;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -49,6 +51,7 @@ public class RankingFragment extends Fragment {
     LinearLayoutManager layoutManager;
     FirebaseRecyclerAdapter<Ranking, RankingViewHolder> adapter;
     private TextView txttname,txttscore,txttFiliere;
+    NetReciever netReciever;
 
 
     FirebaseDatabase db;
@@ -73,6 +76,8 @@ public class RankingFragment extends Fragment {
         db= FirebaseDatabase.getInstance();
         questionScore= db.getReference("Question_Score");
         rankingtable=db.getReference("Ranking");
+        //register broadcast of internet detector
+
 
     }
 
@@ -80,6 +85,10 @@ public class RankingFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+        netReciever= new NetReciever();
+
+        IntentFilter intentFilter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        mContext.registerReceiver(netReciever,intentFilter);
 
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
 
@@ -156,7 +165,7 @@ public class RankingFragment extends Fragment {
                 startActivity(scrorDetail);
             }
         });
-        alertDialog.setNeutralButton("ok", new DialogInterface.OnClickListener() {
+        alertDialog.setNeutralButton("Ok", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialog.dismiss();

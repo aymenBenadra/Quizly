@@ -90,6 +90,8 @@ public class CategoryFragment extends Fragment {
                         startActivity(startGame);
                     }
                 });
+
+
             }
         };
         adapter.notifyDataSetChanged();

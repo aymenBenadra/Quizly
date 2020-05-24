@@ -3,6 +3,8 @@ package ma.ofppt.tdi201.quizly;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -21,6 +23,7 @@ public class GameOver extends AppCompatActivity {
     Button btnTryAgain;
     TextView txtResultScore, getTxtResultQuestion;
     ProgressBar doneProgressBar;
+    NetReciever netReciever;
 
     FirebaseDatabase database;
     DatabaseReference questionScore;
@@ -29,6 +32,12 @@ public class GameOver extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_game_over);
+
+        //register broadcast of internet detector
+        netReciever= new NetReciever();
+
+        IntentFilter intentFilter= new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(netReciever,intentFilter);
 
         database = FirebaseDatabase.getInstance();
         questionScore = database.getReference("Question_Score");
