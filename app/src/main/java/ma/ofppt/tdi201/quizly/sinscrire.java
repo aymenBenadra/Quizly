@@ -59,10 +59,6 @@ public class sinscrire extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         signup();
-                        Intent in = new Intent(sinscrire.this,MainActivity.class);
-                        startActivity(in);
-                        finish();
-
 
 
                     }
@@ -103,6 +99,11 @@ public class sinscrire extends AppCompatActivity {
                         else {
                             Toast.makeText(sinscrire.this, "Inscrit avec succes!", Toast.LENGTH_SHORT).show();
                             users.child(user.getUserName()).setValue(user);
+
+                            Intent in = new Intent(sinscrire.this,MainActivity.class);
+                            startActivity(in);
+                            finish();
+
                         }
                     }
 

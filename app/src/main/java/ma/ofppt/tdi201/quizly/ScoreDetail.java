@@ -12,6 +12,8 @@ import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.Collections;
+
 import ma.ofppt.tdi201.quizly.Model.QuestionScore;
 import ma.ofppt.tdi201.quizly.ViewHolder.ScoreDetailViewHolder;
 
@@ -67,6 +69,9 @@ public class ScoreDetail extends AppCompatActivity {
         };
         adapter.notifyDataSetChanged();
         scorelist.setAdapter(adapter);
+        //Collections.sort(scorelist);
+
+
     }
 
 }

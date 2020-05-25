@@ -13,7 +13,7 @@ public class QuestionScore {
     public QuestionScore(String question_Score, String user, String score, String categoryId, String categoryName) {
         Question_Score = question_Score;
         User = user;
-        Score = score;
+        this.Score = score;
         CategoryId = categoryId;
         CategoryName = categoryName;
     }
@@ -39,7 +39,7 @@ public class QuestionScore {
     }
 
     public void setScore(String score) {
-        Score = score;
+        this.Score = score;
     }
 
     public String getCategoryId() {

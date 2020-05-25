@@ -4,6 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -34,6 +36,7 @@ import com.rengwuxian.materialedittext.MaterialEditText;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 import ma.ofppt.tdi201.quizly.Common.Common;
@@ -80,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        //Notification
+        Notifymethod();
+
 
         //register broadcast of internet detector
         netReciever= new NetReciever();
@@ -129,6 +136,20 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+    }
+
+    private void Notifymethod() {
+        Calendar calendar= Calendar.getInstance();
+        calendar.set(Calendar.HOUR,8);
+        calendar.set(Calendar.MINUTE,46);
+        calendar.set(Calendar.SECOND,0);
+
+        Intent intent= new Intent(MainActivity.this,NetReciever.class);
+        PendingIntent pendingIntent= PendingIntent.getBroadcast(MainActivity.this,0,intent,PendingIntent.FLAG_UPDATE_CURRENT);
+
+        AlarmManager alarmManager=(AlarmManager)this.getSystemService(this.ALARM_SERVICE);
+        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),AlarmManager.INTERVAL_DAY,pendingIntent);
 
     }
 

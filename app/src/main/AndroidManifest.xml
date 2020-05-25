@@ -20,6 +20,7 @@
         <activity android:name=".GameOver" />
         <activity android:name=".Playing" />
         <activity android:name=".Start" />
+        <receiver android:name=".NotifyReciever"/>
         <activity android:name=".Home" />
         <activity android:name=".WelcomeActivity">
             <intent-filter>
