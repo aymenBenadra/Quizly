@@ -71,7 +71,7 @@ public class Home extends AppCompatActivity {
             super.onBackPressed();
             return;
         }else{
-            Toast.makeText(this, "Press Back Again To Exit App", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Appuyez deux fois pour quitter l'application", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
     }

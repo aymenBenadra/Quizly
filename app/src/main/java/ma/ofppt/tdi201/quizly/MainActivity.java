@@ -72,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
             super.onBackPressed();
             return;
         }else{
-            Toast.makeText(this, "Press Back Again To Exit App", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Appuyez deux fois pour quitter l'application", Toast.LENGTH_SHORT).show();
         }
         backPressedTime = System.currentTimeMillis();
     }
@@ -141,8 +141,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void Notifymethod() {
         Calendar calendar= Calendar.getInstance();
-        calendar.set(Calendar.HOUR,8);
-        calendar.set(Calendar.MINUTE,46);
+        calendar.set(Calendar.HOUR_OF_DAY,11);
+        calendar.set(Calendar.MINUTE,00);
         calendar.set(Calendar.SECOND,0);
 
         Intent intent= new Intent(MainActivity.this,NetReciever.class);
@@ -164,7 +164,7 @@ public class MainActivity extends AppCompatActivity {
                         User user = dataSnapshot.child(userName).getValue(User.class);
                         if(user.getPassword().equals(password)) {
 
-                            //loadingdialog.startdialogNotimeout();
+                            loadingdialog.startdialogNotimeout();
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
                             Common.currentUser = user;

@@ -55,9 +55,11 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
 
         if(backPressedTime +2000 > System.currentTimeMillis()){
             super.onBackPressed();
+            mCountDown.cancel();
+            finish();
             return;
         }else{
-            Toast.makeText(this, "Press Back Again To stop the Quiz", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Appuyez deux fois pour quitter Quiz", Toast.LENGTH_SHORT).show();
 
         }
         backPressedTime = System.currentTimeMillis();

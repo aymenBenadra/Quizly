@@ -39,17 +39,19 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="8"
-                android:text="   Category"
+                android:text="   Catégorie:"
                 android:textColor="@color/common_google_signin_btn_text_dark_default"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height='wrap_content'
                 android:layout_weight="2"
-                android:text="Score"
+                android:text="Score:"
                 android:textColor="@color/design_default_color_secondary"
-                android:textSize="24sp" />
+                android:textSize="24sp"
+                tools:ignore="HardcodedText" />
 
         </LinearLayout>
 

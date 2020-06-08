@@ -157,7 +157,7 @@ public class RankingFragment extends Fragment {
         alertDialog.setTitle("INFO");
         alertDialog.setView(detail);
 
-        alertDialog.setPositiveButton("view score detail", new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton("Afficher les détails", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 Intent scrorDetail=new Intent(getActivity(),ScoreDetail.class);

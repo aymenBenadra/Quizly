@@ -7,8 +7,8 @@
     <string name="sign_up_text_btn">S\'inscrire</string>
     <string name="category_name_txt">Category name</string>
     <string name="category_image_description">L\'image de categorie</string>
-    <string name="categories_title">Categories</string>
-    <string name="ranking_title">Ranking</string>
+    <string name="categories_title">Catégories</string>
+    <string name="ranking_title">Classement</string>
     <string name="play_now_button">Joue maintenant!</string>
     <string name="temp_answer_a_txt">Answer A</string>
     <string name="temp_answer_c_txt">Answer C</string>
@@ -20,7 +20,7 @@
     <string name="loading">Loading...</string>
     <string name="todo">TODO</string>
     <string name="todoo">TODO</string>
-    <string name="name">Name :</string>
+    <string name="name">Nom :</string>
     <string name="score">Score :</string>
     <string name="namee">Name</string>
     <string name="scoree">Score</string>
