@@ -131,7 +131,7 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
 ////                gameOver.putExtras(dataSend);
 ////                startActivity(gameOver);
 ////                finish();
-                Toast.makeText(this, "Votre Reponse incorrect !!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Votre Reponse est incorrect !!", Toast.LENGTH_SHORT).show();
                 mCountDown.cancel();
                 ShowQuestion(++index);
 
