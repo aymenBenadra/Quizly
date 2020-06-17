@@ -39,4 +39,8 @@ class DialogLoading {
 
     }
 
+    void stopdialog(){
+        dialog.dismiss();
+    }
+
 }

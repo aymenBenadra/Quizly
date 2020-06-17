@@ -76,7 +76,7 @@ public class RankingFragment extends Fragment {
         db= FirebaseDatabase.getInstance();
         questionScore= db.getReference("Question_Score");
         rankingtable=db.getReference("Ranking");
-        //register broadcast of internet detector
+
 
 
     }
@@ -93,11 +93,12 @@ public class RankingFragment extends Fragment {
         myFragment = inflater.inflate(R.layout.fragment_ranking, container, false);
 
         rankingList=(RecyclerView)myFragment.findViewById(R.id.rankingList);
+
         layoutManager= new LinearLayoutManager(getActivity());
         rankingList.setHasFixedSize(true);
         //using layoutManager to sort list of firebase ordrbychild method and  reverse recycle data because its asc
-        layoutManager.setReverseLayout(true);
-        layoutManager.setStackFromEnd(true);
+//       layoutManager.setReverseLayout(true);
+//       layoutManager.setStackFromEnd(true);
         rankingList.setLayoutManager(layoutManager);
 
 

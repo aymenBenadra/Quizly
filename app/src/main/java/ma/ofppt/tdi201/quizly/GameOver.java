@@ -68,9 +68,6 @@ public class GameOver extends AppCompatActivity {
             doneProgressBar.setProgress(correctAnswers);
 
             //upload point to DB
-
-
-
             //
             questionScore.child(Common.currentUser.getUserName()+"_"+Common.currentUser.getPrenom()+"_"+Common.currentUser.getFiliere()+"_"+Common.categoryId)
                     .setValue(new QuestionScore(Common.currentUser.getUserName()+"_"+Common.currentUser.getPrenom()+"_"+Common.currentUser.getFiliere()+"_"+Common.categoryId,

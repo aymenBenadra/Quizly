@@ -123,14 +123,19 @@ public class Playing extends AppCompatActivity implements View.OnClickListener {
             }
             else{
 
-                Intent gameOver = new Intent(this,GameOverTempActivity.class);
-                Bundle dataSend = new Bundle();
-                dataSend.putInt("SCORE",score);
-                dataSend.putInt("TOTAL",totalQuestion);
-                dataSend.putInt("CORRECT", correctAnswers);
-                gameOver.putExtras(dataSend);
-                startActivity(gameOver);
-                finish();
+//                Intent gameOver = new Intent(this,GameOverTempActivity.class);
+////                Bundle dataSend = new Bundle();
+////                dataSend.putInt("SCORE",score);
+////                dataSend.putInt("TOTAL",totalQuestion);
+////                dataSend.putInt("CORRECT", correctAnswers);
+////                gameOver.putExtras(dataSend);
+////                startActivity(gameOver);
+////                finish();
+                Toast.makeText(this, "Votre Reponse incorrect !!", Toast.LENGTH_SHORT).show();
+                mCountDown.cancel();
+                ShowQuestion(++index);
+
+
             }
 
             textScore.setText(String.format("%d",score));

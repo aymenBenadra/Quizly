@@ -47,6 +47,7 @@ public class ScoreDetail extends AppCompatActivity {
          scorelist=(RecyclerView)findViewById(R.id.scoreList);
          scorelist.setHasFixedSize(true);
           layoutManager=new LinearLayoutManager(this);
+
           scorelist.setLayoutManager(layoutManager);
 
 

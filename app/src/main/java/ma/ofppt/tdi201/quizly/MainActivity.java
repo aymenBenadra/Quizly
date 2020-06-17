@@ -128,8 +128,9 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
+                loadingdialog.startdialog();
                 signin(edtUserName.getText().toString(), edtPassword.getText().toString());
+
 
 
             }
@@ -164,7 +165,7 @@ public class MainActivity extends AppCompatActivity {
                         User user = dataSnapshot.child(userName).getValue(User.class);
                         if(user.getPassword().equals(password)) {
 
-                            loadingdialog.startdialogNotimeout();
+                            loadingdialog.stopdialog();
                             Toast.makeText(MainActivity.this, "Bienvenue, " + userName + "!", Toast.LENGTH_SHORT).show();
                             Intent homeActivity = new Intent(MainActivity.this, Home.class);
                             Common.currentUser = user;
@@ -176,14 +177,12 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                     else {
-                        //call methode for loadingdialog
-                        loadingdialog.startdialog();
+
                         Toast.makeText(MainActivity.this, "Entrer votre nom d'utilisateur", Toast.LENGTH_SHORT).show();
                     }
                 }
                 else {
-                    //call methode for loadingdialog
-                    loadingdialog.startdialog();
+
                     Toast.makeText(MainActivity.this, "I'l n'y a pas d'utilisateur avec ce nom, essayer de s'inscrire.", Toast.LENGTH_SHORT).show();
                 }
             }
